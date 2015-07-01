@@ -15,5 +15,10 @@ dname = uigetdir(pwd,'Select directory containing mmt files (will search recursi
 for i = 1:length(files)
     [inpath, infile, ext] = fileparts(files{i});
     MMTProcessingEngine([inpath filesep],[infile ext],guiparams)
-    movefile(fullfile(inpath,[infile '.xlsx']),[dname filesep])
+    % If MMT is in same directory as the user selects, just leave it.
+    % Otherwise move the file into the main directory selected by the user.
+    try 
+        movefile(fullfile(inpath,[infile '.xlsx']),[dname filesep])
+    catch
+    end
 end
