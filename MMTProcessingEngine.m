@@ -146,11 +146,13 @@ if guiparams.bottom_track_reference
         wvidx       = 0;
         woidx       = 0;
         for j = 1:ncommands
-            if cell2mat(strfind(temp(j),'WO')) == 1;
-                woidx = j;
-            end
-            if cell2mat(strfind(temp(j),'WV')) == 1;
-                wvidx = j;
+            if ~isempty(temp{j})
+                if cell2mat(strfind(temp(j),'WO')) == 1;
+                    woidx = j;
+                end
+                if cell2mat(strfind(temp(j),'WV')) == 1;
+                    wvidx = j;
+                end
             end
         end
         if wvidx > 0
